@@ -1,4 +1,4 @@
-import os
+import os, pandas as pd
 
 input_directory = ""
 output_directory = ""
@@ -16,7 +16,7 @@ for file in os.listdir(input_directory):
         data = data.replace("]","}")
         data = data.replace("{","")
         data = data.replace("}","")
-        values = [''] * len(headers_list)
+        values = [''] * (len(headers_list) + 1)
 
         for header in headers_list:
             value = ''
@@ -45,6 +45,7 @@ for file in os.listdir(input_directory):
             if str(value).find(":") == -1:
                 values[headers_list.index(header)] = str(value)
 
+        values[len(values)-1] = str(pd.to_datetime(float(values[headers_list.index('DetectionTime')]),unit='us', errors='coerce'))
         line = ','.join(values)
         outfile = open(output_directory, "a")
         outfile.write(line + '\n')
