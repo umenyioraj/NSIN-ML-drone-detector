@@ -4,7 +4,7 @@ from scipy.interpolate import splrep, splev
 import matplotlib.pyplot as plt
  
 #### this is avoiding the idea of knots 
-# less specific to us but same idea
+# less specific to us but same ideagit
 
 # Sample data
 x = np.linspace(0, 10, 10)
