@@ -14,6 +14,13 @@ from sklearn.preprocessing import LabelEncoder
 
 def Train(data):
 
+    threat_ids = data['ThreatId']
+
+    X = data.drop(columns=["Drone", "ThreatId", "SourceSystem", "ThreatName", "Tracks.Lob.OriginPosition.DataCase", "Countermeasures.State"])
+    y = data["Drone"]
+
+    X = X.dropna(axis=1, how='all')
+
     #label encoder for object type features
     label_encoder = LabelEncoder()
 
