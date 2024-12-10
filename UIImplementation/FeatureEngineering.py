@@ -129,8 +129,7 @@ def GenerateSmoothnessMetric(data):
             ThreatsHT[threat_num] = [new_coordinate_ht]
 
 
-    for IDofInterest in ThreatId:
-
+    for IDofInterest in set(ThreatId):
         graph_data = {"Height":[], "DeltaT":[], "Lat":[], "Lon":[], "Distance":[]}
         try:
             t0 = datetime.strptime(ThreatsHT[IDofInterest][0][1],"%Y-%m-%d %H:%M:%S.%f")
@@ -200,7 +199,7 @@ def GenerateSmoothnessMetric(data):
                     average_metric = mean(m2s)
                     if (average_metric < 0.5) & (average_metric > 0.2):
                         data.loc[data['ThreatId'] == IDofInterest, "Drone"] = 1
-                        print(id)
+                        print(IDofInterest)
         else:
             print(f"Error from: {IDofInterest}")
             continue
