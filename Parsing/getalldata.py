@@ -47,9 +47,7 @@ for file in os.listdir(input_directory):
 
         values[len(values)-1] = str(pd.to_datetime(float(values[headers_list.index('DetectionTime')]),unit='us', errors='coerce'))
         line = ','.join(values)
-        outfile = open(output_directory, "a")
-        outfile.write(line + '\n')
-        outfile.close()
+        
 
 
 
