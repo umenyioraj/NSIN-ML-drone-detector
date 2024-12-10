@@ -11,8 +11,11 @@ from sklearn.metrics import make_scorer, r2_score
 from sklearn.feature_selection import SelectKBest, f_classif,chi2
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import LabelEncoder
+from TrainingMLAlgorithm import imputer, scaler, X_train
 
-def PredictSUAS(data, model)
+
+def PredictSUAS(data, model):
+
     current_row = data.drop(columns=["Drone", "ThreatId", "SourceSystem", "ThreatName", "Tracks.Lob.OriginPosition.DataCase", "Countermeasures.State"])
 
     current_row = current_row[X_train.columns]
