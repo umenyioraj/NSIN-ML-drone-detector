@@ -199,9 +199,7 @@ def GenerateSmoothnessMetric(data):
                     average_metric = mean(m2s)
                     if (average_metric < 0.5) & (average_metric > 0.2):
                         data.loc[data['ThreatId'] == IDofInterest, "Drone"] = 1
-                        print(IDofInterest)
         else:
-            print(f"Error from: {IDofInterest}")
             continue
 
     return data
