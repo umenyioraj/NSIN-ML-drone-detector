@@ -84,4 +84,4 @@ def Train(data):
 
     y_pred = model.predict(X_test_scaled)
 
-    return model, imputer, scaler, X_train
+    return model, imputer, scaler, X_train, X_train_final, X_test_final, y_train, y_test, threat_ids

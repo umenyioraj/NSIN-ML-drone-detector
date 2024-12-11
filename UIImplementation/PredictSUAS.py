@@ -13,11 +13,11 @@ from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import LabelEncoder
 
 
-def PredictSUAS(data, model, imputer, scaler, X_train):
+def PredictSUAS(target, data, model, imputer, scaler, X_train):
 
-    print(data)
+    row = data[data["ThreatId"] == target]
     
-    current_row = data.drop(columns=["Drone", "ThreatId", "SourceSystem", "ThreatName", "Tracks.Lob.OriginPosition.DataCase", "Countermeasures.State"])
+    current_row = row.drop(columns=["Drone", "ThreatId", "SourceSystem", "ThreatName", "Tracks.Lob.OriginPosition.DataCase", "Countermeasures.State"])
 
     current_row = current_row[X_train.columns]
 
@@ -26,4 +26,4 @@ def PredictSUAS(data, model, imputer, scaler, X_train):
 
     prediction = model.predict(current_row_scaled)
 
-    print(f"The prediction for ThreatId {data['ThreatId']} is: {prediction[0]}")
+    print(f"The prediction for ThreatId {target} is: {prediction[0]}")
