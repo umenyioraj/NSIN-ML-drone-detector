@@ -14,13 +14,6 @@ from sklearn.preprocessing import LabelEncoder
 
 def Train(data):
 
-    threat_ids = data['ThreatId']
-
-    X = data.drop(columns=["Drone", "ThreatId", "SourceSystem", "ThreatName", "Tracks.Lob.OriginPosition.DataCase", "Countermeasures.State"])
-    y = data["Drone"]
-
-    X = X.dropna(axis=1, how='all')
-
     #label encoder for object type features
     label_encoder = LabelEncoder()
 
@@ -31,6 +24,13 @@ def Train(data):
 
 
     correlation = data.corr(numeric_only=False)["Drone"].sort_values(ascending=False)
+
+    threat_ids = data['ThreatId']
+
+    X = data.drop(columns=["Drone", "ThreatId", "SourceSystem", "ThreatName", "Tracks.Lob.OriginPosition.DataCase", "Countermeasures.State"])
+    y = data["Drone"]
+
+    X = X.dropna(axis=1, how='all')
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
@@ -84,4 +84,4 @@ def Train(data):
 
     y_pred = model.predict(X_test_scaled)
 
-    return model
+    return model, imputer, scaler, X_train
