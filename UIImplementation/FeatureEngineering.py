@@ -68,7 +68,7 @@ def FeatureEngineer(data):
                 data.loc[data['ThreatId'] == id, "Altitude Consistent"] = True
                 break
     
-    data["Speed"] = data["Speed"] * 2.237
+    data["Speed"] = float(data["Speed"]) * 2.237
 
     ninja_ids = []
 
