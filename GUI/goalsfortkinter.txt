@@ -1,0 +1,8 @@
+1. button that takes in a data file 
+2. cycles through that data file with our algorithm and says successful / done or failed
+3. if successful
+    another button pops up and says enter in specific ID
+    if failed
+    try again? 
+4. goes back to our results after running algorithm
+5. returns yes or no and confidence matrix 
