@@ -13,7 +13,7 @@ from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import LabelEncoder
 
 
-def PredictSUAS(target, data, model, imputer, scaler, X_train):
+def PredictSUAS(target, data, model, imputer, scaler, X_train, selected_features):
 
     row = data[data["ThreatId"] == target]
     
@@ -24,6 +24,11 @@ def PredictSUAS(target, data, model, imputer, scaler, X_train):
     current_row_imputed = imputer.transform(current_row)
     current_row_scaled = scaler.transform(current_row_imputed)
 
-    prediction = model.predict(current_row_scaled)
+    # Filter to the selected features used during training
+    import pandas as pd
+    current_row_scaled_df = pd.DataFrame(current_row_scaled, columns=X_train.columns)
+    current_row_final = current_row_scaled_df[selected_features]
+
+    prediction = model.predict(current_row_final)
 
     print(f"The prediction for ThreatId {target} is: {prediction[0]}")

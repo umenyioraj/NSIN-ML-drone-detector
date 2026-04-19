@@ -176,10 +176,13 @@ def GenerateSmoothnessMetric(data):
         y = graph_data["Distance"]
 
         if len(y) > 3:
-            dist = splrep(x, y)
+            dist, fp, ier, msg = splrep(x, y, full_output=True)
+            if ier > 0:
+                continue
 
             # Evaluate spline at new points
-            xnew = np.linspace(0, max(x), ceil(max(x)*60))
+            num_points = max(2, ceil(max(x) * 60))
+            xnew = np.linspace(0, max(x), num_points)
 
             distnew = splev(xnew, dist)
             xnew = list(xnew)
