@@ -2,7 +2,7 @@ import sklearn
 import xgboost as xgb
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, classification_report
 from sklearn.preprocessing import StandardScaler
 from xgboost import XGBRFClassifier
 from sklearn.ensemble import RandomForestClassifier
@@ -67,21 +67,17 @@ def Train(data):
         "dt_clf": DecisionTreeClassifier(random_state=42),
         "xgb_clas" : XGBRFClassifier(),
         "rnd_forest": RandomForestClassifier()
-
     }
 
+    reports = []
     for name, model in models.items():
         model.fit(X_train_final, y_train)
         y_pred = model.predict(X_test_final)
         r2 = r2_score(y_pred,y_test)
         accuracy = accuracy_score(y_test, y_pred)
+        report = classification_report(y_test, y_pred, output_dict=True)
+        reports.append(report)
         print(f"{name}: Accuracy = {accuracy}")
         print(f"{name}: R2 score = {r2}")
 
-    model = RandomForestClassifier(random_state=42)
-
-    model.fit(X_train_scaled, y_train)
-
-    y_pred = model.predict(X_test_scaled)
-
-    return model, imputer, scaler, X_train, X_train_final, X_test_final, y_train, y_test, threat_ids
+    return models, reports, imputer, scaler, X_train, X_train_final, X_test_final, y_train, y_test, threat_ids
