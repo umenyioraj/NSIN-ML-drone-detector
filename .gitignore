@@ -1,6 +1,11 @@
 env/
-Metrics/__pycache__/metric1.cpython-311.pyc
-Metrics/__pycache__/metric2.cpython-311.pyc
-Metrics/__pycache__/metric3.cpython-311.pyc
+.venv/
+__pycache__/
+*.pyc
+datasets/
 Graphs/distance.py
 Metrics/metrictest.py
+Parsing/CSVDataWithDT.txt
+Parsing/output_data.txt
+mlruns/
+mlflow.db
