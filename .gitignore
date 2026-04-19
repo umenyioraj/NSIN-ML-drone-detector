@@ -9,3 +9,4 @@ Parsing/CSVDataWithDT.txt
 Parsing/output_data.txt
 mlruns/
 mlflow.db
+deployment/
