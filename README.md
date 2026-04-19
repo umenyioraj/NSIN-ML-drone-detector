@@ -97,12 +97,9 @@ pip install xgboost mlflow
 
 ## Usage
 
-1. Place raw DOD data files in `datasets/DODData/Default/`.
-2. (Optional) Start the MLflow server:
-   ```bash
-   mlflow server --backend-store-uri sqlite:///mlflow.db --default-artifact-root ./mlruns --host 127.0.0.1 --port 5000
-   ```
-3. Open `UIImplementation/UIImplementation.ipynb` and run cells sequentially.
+1. Check Hugging Face endpoint https://huggingface.co/spaces/umenyioraj/drone-detection-api/tree/main
+2. /demo shows features be used
+3. /predict uses real DoD data(sensitive and not available for viewers) can predicts drone vs bird
 
 ## Dependencies
 
